@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>zeta Impression</title>
+        <link rel = "icon" type = "image/png" href = "img/zetaImpression_Logo-01.png">
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/main.css" rel = "stylesheet" type = "text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Source+Code+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css">
+    <link rel="stylesheet" href="_demo.css">
+       
+</head>
+<body>
+<header>
+    <nav>
+        <div class = "title"><img src = "img/zetaImpression_Logo-01.png" style="width:50px;height:50px"><h2><div class="zilla">zeta</div> <div class="investo">Impression</div></h2></div>
+                <ul>
+                    
+                    <li><a href = "index.html#home">Home</a></li>
+                    <li><a href = "index.html#about">About Us</a></li>
+                    <li><a href = "index.html#carbassist">Carb-Assist</a></li>
+                </ul>
+    </nav>     
+</header>
+<section>
+    <div class = "filter_pane">
+    <div class = "filter_content">
+    <h2>Filter</h2><br>
+    <h3>Frequency Plots</h3>
+   <select id="file1" name="file1">
+   
+            <option value="data/city_fc.csv">city_fc.csv</option>
+            <option value="data/comb_fc.csv">comb_fc.csv</option>
+            <option value="data/comb_mpg_fc.csv">comb_mpg_fc.csv</option>
+            <option value="data/cyl.csv">cyl.csv</option>
+            <option value="data/diesel.csv">diesel.csv</option>
+            <option value="data/esize.csv">esize.csv</option>
+            <option value="data/ethanol.csv">ethanol.csv</option>
+            <option value="data/gasoline.csv">gasoline.csv</option>
+            <option value="data/hwy_fc.csv">hwy_fc.csv</option>
+            <option value="data/prem_gas.csv">prem_gas.csv</option>
+          </select>
+          <br>
+          <input id="load-file1" type="button" value="Load" />
+          <hr>
+          <h3>CO2 Emissions</h3>
+          <select id="file2" name="file2">
+            <option value="data/city_fc_c.csv">city_fc_c.csv</option>
+            <option value="data/comb_fc_c.csv">comb_fc_c.csv</option>
+            <option value="data/comb_mpg_fc_c.csv">comb_mpg_fc_c.csv</option>
+            <option value="data/cyl_c.csv">cyl_c.csv</option>
+            <option value="data/diesel_c.csv">diesel_c.csv</option>
+            <option value="data/esize_c.csv">esize_c.csv</option>
+            <option value="data/ethanol_c.csv">ethanol_c.csv</option>
+            <option value="data/gasoline_c.csv">gasoline_c.csv</option>
+            <option value="data/hwy_fc_c.csv">hwy_fc_c.csv</option>
+            <option value="data/prem_gas_c.csv">prem_gas_c.csv</option>
+          </select>
+          <br>
+          <input id="load-file2" type="button" value="Load" />
+          <hr>
+          <h3>COMB_MPG_FC : LREG</h3><br>
+          <input id="load-file3" type="button" value="Load" />
+          <hr>
+
+    </div>
+    </div>
+    <div class = "body_pane">
+    <div class = "body_content">
+    <h2>Body</h2>
+    <h2>Plot</h2>
+        <input id="predict" type="button" value="Predict" /><br><p id="contxt"></p><br>
+        <div id="flot" style="width:600px;height:300px;margin:0 auto;"></div>
+    </div>
+    </div>
+</section>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>    
+    <script src="src/jquery.csv.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+    <script src="_helpers.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+      // enable syntax highlighting
+      hljs.initHighlightingOnLoad();
+
+      $('#load-file1').bind('click', function () {
+        loadFile_single(1);
+      });
+      
+      $('#load-file2').bind('click', function () {
+        loadFile_single(2);
+      });
+      
+      $('#load-file3').bind('click', function () {
+        loadFile_multi('lr');
+      });
+      
+      $('#predict').bind('click', function () {
+        document.getElementById('contxt').innerHTML = "R-squared: 0.81, MAE: 17.02, MSE:637.88, RMSE:25.26";
+      });
+ 
+
+
+      function loadFile_single(dig) {
+        var file = $('#file'+dig).val();
+        $.get(file, function(csv) {
+            var data = $.csv.toArrays(csv, {
+              onParseValue: $.csv.hooks.castToScalar
+            });
+            if(dig == 1)plot_single(data,true);
+            else plot_single(data,false);
+            //$('#result').empty();
+            //$('#result').html(JSON.stringify(data, null, 2));
+        });
+      }
+      
+      function fetch(file,callback)
+      {
+        $.get(file, function(csv) {
+            var data = $.csv.toArrays(csv, {
+              onParseValue: $.csv.hooks.castToScalar
+            });
+            callback(data);
+        });
+      }
+      var data1,data2;
+      function loadFile_multi(str) {
+        var file1 = 'data/'+str+'_1.csv';
+        var file2 = 'data/'+str+'_2.csv';
+        
+        fetch(file1,function(d1){window.data1 = d1;});
+        fetch(file2,function(d2){window.data2 = d2;});
+        //document.getElementById("demo").innerHTML = data1;
+        plot_multi();
+}
+
+
+      function plot_single(data,line) {
+        $.plot($('#flot'), [data], {
+          series: {
+            lines: { show: line },
+            points: { show: true }
+          }
+        });
+      }
+      function plot_multi() {
+
+        $.plot($('#flot'), [
+         { data: window.data1, label: "Actual Data"},
+        { data: window.data2, label: "Linear Regression Fit"},
+        ], {
+          series: {
+            lines: { show: false },
+            points: { show: true }
+          },grid: { hoverable: true, clickable: true }
+        });
+      }
+    </script>
+</body>
+</html>

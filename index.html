@@ -1,0 +1,211 @@
+
+ <!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+        <title>zeta Impressions</title>
+        <link rel = "icon" type = "image/png" href = "img/zetaImpression_Logo-01.png">
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/main.css" rel = "stylesheet" type = "text/css" />
+
+        <script type = "text/javascript">
+        var myVar;
+
+        function myFunction() {
+          myVar = setTimeout(showPage, 3000);
+        }
+        function myFunction_1() {
+        //alert("Slide changed");
+          myVar = setTimeout(carousel, 5000);
+        }
+function carousel()
+{
+//alert("Slide to be changed");
+    carouselUpdate(1);
+}
+        function showPage() {
+          document.getElementById("loader").style.display = "none";
+          document.getElementById("myDiv").style.display = "block";
+          myFunction_1();
+        }
+        
+    function currentSlide()
+    {
+        var i;
+        for(i=1;i<=5;i++)
+        {
+            if(document.getElementById("slide_"+i).checked)
+            {
+                return i;
+            }
+        }
+    }
+    function carouselUpdate(dir)
+    {
+        var slideno = currentSlide();
+        
+        //alert('event has been triggered ' + slideno + ' ' + dir);
+        if (dir == -1)
+        {
+            document.getElementById("slide_"+slideno).checked = false;
+            slideno = slideno - 1;
+            if(slideno == 0) slideno = 5;
+            document.getElementById("slide_"+slideno).checked = true;
+        }
+        else
+        {
+            document.getElementById("slide_"+slideno).checked = false;
+            slideno = slideno + 1;
+            if(slideno == 6) slideno = 1;
+            document.getElementById("slide_"+slideno).checked = true;
+            //alert("Slide to be changed");
+        }
+        //alert("Slide to be changed");
+        myFunction_1();
+    }
+</script>
+    </head>
+    <body  onload="myFunction()">
+
+        <div class = "loader" id="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div style="display:none;" id="myDiv" class="animate-bottom">
+            <!--<h2>Tada!</h2>
+            <p>Some text in my newly loaded page..</p>-->
+            <header>
+            <div class = "container">
+                    <div class = "prev_but"><span  onclick = "carouselUpdate(-1)"></span></div>
+                    <div class = "next_but"><span  onclick = "carouselUpdate(1)"></span></div>
+                    <ul class = "carousel">
+                        <li>
+                            <input id = "slide_1" type = "radio" checked = "checked" name = "slide">
+                                <div class = "slide">
+
+                                    <div class = "content">
+                                        <h2>Carbon Emissions</h2>
+                                        <p>Historically defined as the total emissions caused by an individual, event, organization, or product, expressed as carbon dioxide equivalent.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            
+                        </li> 
+                        <li>
+                            <input id = "slide_2" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Sources in Question?</h2>
+                                        <p>Carbon dioxide emissions into the atmosphere, and the emissions of other GHGs, are often associated with the burning of fossil fuels, like natural gas, crude oil and coal.</p>
+                                    </div>
+                                    <div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                        <li>
+                            <input id = "slide_3" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Tools : Signature of Smart</h2>
+                                        <p> Tools helps with the research and making decision, provide analysis related data in an easy form for all beginners to understand, help get the latest resolutions of severe conditions and precautions in the entire world.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                        <li>
+                            <input id = "slide_4" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Outcome Prolonged</h2>
+                                        <p>Carbon emissions contribute to climate change, which can have serious consequences for humans and their environment. Raise global temperatures by trapping solar energy in the atmosphere.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                        <li>
+                            <input id = "slide_5" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>At your Service</h2>
+                                        <p>Our models use a range of fundamental analysis data and technical analysis data to create a risk-adjusted performance rating to help your critical evaluations.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                    </ul>
+                </div>
+                
+            </header>
+            <nav>
+                <div class = "title"><img src = "img/zetaImpression_Logo-01.png" style="width:50px;height:50px"><h2><div class="zilla">zeta</div> <div class="investo">Impression</div></h2></div>
+                <ul>
+                    
+                    <li><a href = "#home">Home</a></li>
+                    <li><a href = "#about">About Us</a></li>
+                    <li><a href = "#carbassist">Carb-Assist</a></li>
+                </ul>
+            </nav>
+            <section class = "sec1" id = "home">
+                <div class = "home_layer_1">
+                    <div class = "home_content">
+                        <h2>A Step Deeper...</h2>
+                        <p>This project is targeted upon carbon emissions duw to automobiles auch as cars. Furthermore, analysing involvement and contribution of various components of automobiles such as engine size, number of cylinders, fuel type and amount of fuel consumption in different scenarios.</p>
+                        <br>
+                        <p>Relevant dataset has been collected for analysis. Analysis focuses on general trends following frequency of several factors and comparison with carbon emission factor. For every category, a linear regression model is implemented that gives a prediction based on available data to suggest a trend with certain accuracy.</p>
+                    </div>
+                </div>
+                
+            </section>
+            <section class = "sec2" id = "about">
+                <div class = "about">
+                    <div class = "card">
+                    <div class = "char"><h2>Vaishnavie Sangam</h2></div>
+                    <div class = "content">
+                        <h3>1RV16CS170</h3>
+                        <h3>vaishnaviecse.cs16@rvce.edu.in</h3>
+                        <h3>+91-9148775324</h3>
+                    </div>
+                    </div>
+                    <div class = "card"><div class = "char"><h2>Yogeshwari Tandle</h2></div>
+                    <div class = "content"><h3>1RV16CS170</h3><h3>vaishnaviecse.cs16@rvce.edu.in</h3>
+                        <h3>+91-9148775324</h3></div>
+                    </div>
+                    <div class = "card"><div class = "char"><h2>Third Person</h2></div>
+                    <div class = "content"><h3>1RV16CS170</h3><h3>vaishnaviecse.cs16@rvce.edu.in</h3>
+                        <h3>+91-9148775324</h3></div></div>
+                </div>
+            </section>
+            <section class = "sec3" id = "carbassist">
+                <div class = "sg_layer">
+                    <div class = "sg_con_bg">
+                    <div class = "sg_content">
+                    
+                    <h2>Carb-Assist</h2>
+                    <br>
+                    <p>Here, you will be able to access our tool and analyse the carbon emission and factors involved with their contribution factors in the case of an automobile car.</p>
+                    <br>
+                   <a href = "carbassist.html">Lets Get Started!!!</a>
+                    </div>
+                    <img src = "img/Analyst_FG.jpg" style = "width:250px;height:100%;">
+                    </div>
+                </div>
+            </section>
+            
+            <section class = "footer">
+                <p><h2>Unpublished work (c) 2019 Vaishnavie Sangam, Yogeshwari Tandle and Third Person</h2><br><br>
+                <h2>Contact: Vaishnavie (+91 - 9148775324)</h2><br><br>
+                <h2><b>Reference: </b>Online Tutorials, Stack Overflow, w3schools</h2>
+            </section>
+            <div id="pal_sect">
+            <ul class = "palette">
+                <li><a href = "#carbassist">GO</a></li>
+
+            </ul>
+        </div>
+        </div>
+        
+        
+    </body>
+    </html>

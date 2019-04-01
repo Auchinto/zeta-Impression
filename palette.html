@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel = "stylesheet" href = "style.css" type = "text/css">
+<script type  = "text/javascript">
+    function currentSlide()
+    {
+        var i;
+        for(i=1;i<=5;i++)
+        {
+            if(document.getElementById("slide_"+i).checked)
+            {
+                return i;
+            }
+        }
+    }
+    function carouselUpdate(dir)
+    {
+        var slideno = currentSlide();
+        
+        //alert('event has been triggered ' + slideno + ' ' + dir);
+        if (dir == -1)
+        {
+            document.getElementById("slide_"+slideno).checked = false;
+            slideno = slideno - 1;
+            if(slideno == 0) slideno = 5;
+            document.getElementById("slide_"+slideno).checked = true;
+        }
+        else
+        {
+            document.getElementById("slide_"+slideno).checked = false;
+            slideno = slideno + 1;
+            if(slideno == 6) slideno = 1;
+            document.getElementById("slide_"+slideno).checked = true;
+        }
+    }
+</script>
+</head>
+<body>
+<!--<ul class = "palette">
+<li><a href = "#">PIH</a></li>
+<li><a href = "#">ADPH</a></li>
+<li><a href = "#">AICU</a></li>
+<li><a href = "#">NSFNET</a></li>
+</ul>-->
+<header>
+            <!--<img src = "zillaInvesto_Logo-01.png">-->
+                <div class = "container">
+                    <div class = "prev_but"><span  onclick = "carouselUpdate(-1)"></span></div>
+                    <div class = "next_but"><span  onclick = "carouselUpdate(1)"></span></div>
+                    <ul class = "carousel">
+                        <li>
+                            <input id = "slide_1" type = "radio" checked = "checked" name = "slide">
+                                <div class = "slide">
+
+                                    <div class = "content">
+                                        <h2>Slide One</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            
+                        </li> 
+                        <li>
+                            <input id = "slide_2" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Slide Two</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div>
+                                    <div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                        <li>
+                            <input id = "slide_3" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Slide Three</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                        <li>
+                            <input id = "slide_4" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Slide Four</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                        <li>
+                            <input id = "slide_5" type = "radio" name = "slide">
+                                <div class = "slide">
+                                    <div class = "content">
+                                        <h2>Slide Five</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div><div class = "bg_image"></div>
+                                </div>
+                            </input>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+</body>
+</html>

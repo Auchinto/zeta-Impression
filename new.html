@@ -1,0 +1,36 @@
+
+<html>
+<head>
+<title>
+Style Get data from excel sheet
+</title>
+<script type="text/javascript" >
+function gbid(s){return document.getElementById(s);}
+
+function GetData(cell,row){
+    var excel = new ActiveXObject("Excel.Application");
+    var excel_file = excel.Workbooks.Open("companylist.csv");
+    var sht = excel.Worksheets("companylist");
+    document.write();
+    var v = sht.Range("A1:J10").Value;
+    document.write(v);
+   
+</script>
+</head>
+<body>
+<p>&nbsp;</p>
+<div style="background: #009955; width:'100%';" align="center">
+<font color="#000080" size="12pt">
+<b>Get data from excel sheets</b>
+</font>
+</div>
+<center>
+<p>&nbsp;</p>
+<div id="div1" style="background: #DFDFFF; width:'100%';" align="center">
+Click buttons to fetch data from F:\\test.xls
+</div>
+<input type="button" value="cell(1),row(1)" onClick="GetData(1,1);" ></input>
+
+</center>
+</body>
+</html>
